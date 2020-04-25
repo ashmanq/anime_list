@@ -3,6 +3,7 @@
     <h1>Anime Currently Airing</h1>
     <div class="container">
       <section id="selection" class="selection">
+        <anime-form></anime-form>
         <loading-indicator v-if="loading"></loading-indicator>
         <anime-list v-if="animes" :animes="animes"></anime-list>
       </section>
@@ -15,6 +16,7 @@
 
 <script>
 
+import AnimeForm from './components/AnimeForm.vue';
 import AnimeList from './components/AnimeList.vue';
 import LoadingIndicator from './components/LoadingIndicator.vue';
 import Detail from './components/Detail.vue';
@@ -49,6 +51,7 @@ export default {
     });
   },
   components: {
+    "anime-form": AnimeForm,
     "anime-list": AnimeList,
     "item-detail": Detail,
     "loading-indicator": LoadingIndicator,
