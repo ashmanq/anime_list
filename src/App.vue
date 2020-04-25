@@ -29,11 +29,23 @@ export default {
       animes: null,
       loading: null,
       selectedAnime: null,
+      // filterByGenre: null,
     }
   },
-
   methods: {
 
+  },
+  computed: {
+    filteredList: function() {
+      if(this.filterByGenre){
+        return this.animes.filter((anime) => {
+          anime.genres.some(genre => genre.name === this.filterByGenre);
+        });
+      } else {
+        return this.animes;
+      }
+
+    } ,
   },
   mounted() {
     this.loading = true;
@@ -49,6 +61,11 @@ export default {
       element.scrollIntoView();
       this.selectedAnime = selected;
     });
+
+    eventBus.$on("filter-genre", (selectedGenre) => {
+      this.filterByGenre = selectedGenre;
+      console.log("hi");
+    })
   },
   components: {
     "anime-form": AnimeForm,
