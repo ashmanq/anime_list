@@ -1,13 +1,21 @@
 <template lang="html">
-  <div class="">
+  <div class="details">
+    <h2>Anime Details</h2>
     <h3>{{ anime.title }}</h3>
-    <img v-bind:src="anime.image_url" alt="">
-    <p> Airing Start: {{ formatDate }}</p>
-    <p v-if="anime.episodes"> Episodes: {{ anime.episodes }} </p>
-    <p> Type: {{ anime.type }}</p>
-    <p> Source: {{ anime.source }}</p>
-    <!-- <p> Score: {{ anime.score }}</p> -->
-    <p><graph class="center" :score="anime.score"></graph></p>
+
+    <div class="row">
+
+      <img v-bind:src="anime.image_url" alt="">
+      <section class="column">
+        <p> Airing Start: {{ formatDate }}</p>
+        <p v-if="anime.episodes"> Episodes: {{ anime.episodes }} </p>
+        <p> Type: {{ anime.type }}</p>
+        <p> Source: {{ anime.source }}</p>
+        <p v-for="(producer, index) in anime.producers" >Producer(s): {{ producer.name }}</p>
+        <!-- <p> Score: {{ anime.score }}</p> -->
+        <p><graph class="center" :score="anime.score"></graph></p>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -36,9 +44,28 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .center {
-    margin: auto;
-    width:120px;;
-    align-self: center;
-  }
+
+img {
+  padding:16px;
+  height:300px;
+  align-self: center;
+
+}
+.details {
+  background-color: #f76363;
+  margin-top:80px;
+}
+.row {
+  display:flex;
+  justify-content: space-around;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.center {
+  margin: auto;
+  width:120px;
+  align-self: center;
+}
 </style>

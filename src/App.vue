@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Anime Currently Airing</h1>
+    <h1>Anime Web App</h1>
     <div class="container">
       <section id="selection" class="selection">
         <anime-form></anime-form>
@@ -36,16 +36,6 @@ export default {
 
   },
   computed: {
-    filteredList: function() {
-      if(this.filterByGenre){
-        return this.animes.filter((anime) => {
-          anime.genres.some(genre => genre.name === this.filterByGenre);
-        });
-      } else {
-        return this.animes;
-      }
-
-    } ,
   },
   mounted() {
     this.loading = true;
@@ -57,14 +47,13 @@ export default {
     });
 
     eventBus.$on("item-selected", (selected) => {
-      var element = document.getElementById("app");
-      element.scrollIntoView();
+      // var element = document.getElementById("app");
+      // element.scrollIntoView();
       this.selectedAnime = selected;
     });
 
     eventBus.$on("filter-genre", (selectedGenre) => {
       this.filterByGenre = selectedGenre;
-      console.log("hi");
     })
   },
   components: {
@@ -83,7 +72,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #e0f0ff;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
@@ -91,6 +80,7 @@ export default {
 }
 h1  {
   margin:60px;
+  color:#212f3d;
 }
 .container {
   display: flex;
@@ -99,10 +89,18 @@ h1  {
 }
 
 .selection {
-  flex:1;
+  flex:2;
+  background-color: #3d54ff;
+  margin: 10px;
+  padding:20px;
+  border-radius: 5px;
 }
 
 .details {
+  background-color: #3d54ff;
+  margin:10px;
+  padding:20px;
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
   flex:1;
