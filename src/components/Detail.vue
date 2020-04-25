@@ -14,6 +14,7 @@
         <p v-for="(producer, index) in anime.producers" >Producer(s): {{ producer.name }}</p>
         <!-- <p> Score: {{ anime.score }}</p> -->
         <p><graph class="center" :score="anime.score"></graph></p>
+        <button type="button" name="button">Add to Favourites</button>
       </section>
     </div>
   </div>
