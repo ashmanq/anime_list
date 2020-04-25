@@ -78,6 +78,8 @@ export default {
 }
 
 .details {
+  justify-content: center;
+  align-items: center;
   flex:1;
 }
 
