@@ -1,17 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Anime Currently Airing</h1>
+    <section class="selection">
+      <anime-list :animes="animes"></anime-list>
+    </section>
+    <section class="details">
+
+    </section>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import AnimeList from './components/AnimeList.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      animes: null,
+    }
+  },
   components: {
-    HelloWorld
+    "anime-list": AnimeList,
+  },
+  mounted() {
+    fetch("https://api.jikan.moe/v3/season")
+    .then(res => res.json())
+    .then(res => this.animes = res.anime);
   }
 }
 </script>
