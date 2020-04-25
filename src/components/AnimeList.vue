@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="">
-    <list-item v-for="(anime, index) in animes" :anime="anime" :key="index"></list-item>
+  <div class="list-container">
+    <list-item class="list-item" v-for="(anime, index) in animes" :anime="anime" :key="index"></list-item>
   </div>
 </template>
 
@@ -19,4 +19,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.list-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-item{
+  width: 200px;
+  margin:5px;
+}
 </style>

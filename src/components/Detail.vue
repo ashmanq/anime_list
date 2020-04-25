@@ -3,7 +3,9 @@
     <h3>{{ anime.title }}</h3>
     <img v-bind:src="anime.image_url" alt="">
     <p> Airing Start: {{ anime.airing_start }}</p>
-    <p> Episodes: {{ anime.episodes}} </p>
+    <p v-if="anime.episodes"> Episodes: {{ anime.episodes}} </p>
+    <p> Type: {{ anime.type }}</p>
+    <p> Source: {{ anime.source }}</p>
     <!-- <p> Score: {{ anime.score }}</p> -->
     <p><graph class="center" :score="anime.score"></graph></p>
   </div>

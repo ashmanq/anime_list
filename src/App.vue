@@ -2,11 +2,11 @@
   <div id="app">
     <h1>Anime Currently Airing</h1>
     <div class="container">
-      <section class="selection">
+      <section id="selection" class="selection">
         <loading-indicator v-if="loading"></loading-indicator>
         <anime-list v-if="animes" :animes="animes"></anime-list>
       </section>
-      <section class="details">
+      <section id="details" class="details">
         <item-detail v-if="selectedAnime" :anime="selectedAnime"></item-detail>
       </section>
     </div>
@@ -43,6 +43,8 @@ export default {
     });
 
     eventBus.$on("item-selected", (selected) => {
+      var element = document.getElementById("details");
+      element.scrollIntoView();
       this.selectedAnime = selected;
     });
   },
