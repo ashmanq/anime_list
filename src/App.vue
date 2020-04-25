@@ -43,7 +43,7 @@ export default {
     });
 
     eventBus.$on("item-selected", (selected) => {
-      var element = document.getElementById("details");
+      var element = document.getElementById("app");
       element.scrollIntoView();
       this.selectedAnime = selected;
     });
@@ -67,8 +67,11 @@ export default {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
-
+h1  {
+  margin:60px;
+}
 .container {
   display: flex;
   justify-content: space-between;

@@ -1,7 +1,7 @@
 <template lang="html">
   <div v-on:click="itemDetail" class="item-container">
     <img v-bind:src="anime.image_url" alt="">
-    <h3>{{ anime.title }}</h3>
+    <h4>{{ anime.title }}</h4>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 }
 
 img {
-  max-height: 200px;
+  max-height: 150px;
   max-width: 150px;
 }
 </style>
