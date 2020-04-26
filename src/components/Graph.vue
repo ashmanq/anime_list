@@ -1,10 +1,10 @@
 <template lang="html">
   <GChart
   :settings="{ packages: ['corechart', 'gauge'] }"
-type="Gauge"
-:data="chartInput"
-:options="chartOptions"
- />
+  type="Gauge"
+  :data="chartInput"
+  :options="chartOptions"
+  />
 </template>
 
 <script>

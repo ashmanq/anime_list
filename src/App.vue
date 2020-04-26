@@ -9,6 +9,7 @@
       </section>
       <div v-if="animeWatchList.length>0" class="watch-list">
         <anime-list :animes="animeWatchList" :title="listTitles[1]"></anime-list>
+        <genre-graph :data="animeWatchList"></genre-graph>
       </div>
       <div v-if="selectedAnime" id="details" class="details">
         <item-detail  :anime="selectedAnime"></item-detail>
@@ -24,6 +25,7 @@ import AnimeForm from './components/AnimeForm.vue';
 import AnimeList from './components/AnimeList.vue';
 import LoadingIndicator from './components/LoadingIndicator.vue';
 import Detail from './components/Detail.vue';
+import GenreGraph from './components/GenreGraph.vue';
 import {eventBus} from './main.js';
 
 export default {
@@ -79,6 +81,7 @@ export default {
     "anime-list": AnimeList,
     "item-detail": Detail,
     "loading-indicator": LoadingIndicator,
+    "genre-graph": GenreGraph,
   }
 
 }

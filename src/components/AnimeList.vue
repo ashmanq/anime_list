@@ -41,9 +41,7 @@ export default {
   },
 
   methods: {
-    // filterGenre: function() {
-    //   // eventBus.$emit('filter-genre', this.selectedGenre);
-    // },
+    
   },
   computed: {
     // Function to get all genres from anime list and create
