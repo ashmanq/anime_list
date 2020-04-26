@@ -1,17 +1,24 @@
 <template lang="html">
   <div class="">
+    <h2>{{ title }}</h2>
     <label for="genre">Genre </label>
-    <select v-model="selectedGenre" v-on:change="resetPages" class="genre" name="genre">
-      <option value="">Select Genre</option>
+    <select v-model="selectedGenre" v-on:change="resetPages" class="genre" name="genre" id="genre">
+      <option value="">All</option>
       <option v-for="(genre, index) in findGenres" v-bind:value="genre">{{ genre }}</option>
     </select>
+    <label for="no-per-page">No Per Page</label>
+    <select v-model.number="noPerPage" class="" name="no-per-page" id="no-per-page">
+      <option value=5 selected>5</option>
+      <option value=10>10</option>
+      <option value=15>15</option>
+    </select>
     <div class="list-container">
-      <list-item class="list-item" v-for="(anime, index) in filteredList" :anime="anime" :key="index"></list-item>
+      <list-item class="list-item noselect" v-for="(anime, index) in filteredList" :anime="anime" :key="index"></list-item>
     </div>
     <p></p>
-    <span v-on:click="changePage" id="pageDown" class="page-no" v-if="pageNo>1"> {{ pageNo - 1 }} ⬅︎ </span>
+    <span v-on:click="changePage" id="pageDown" class="page-no noselect" v-if="pageNo>1"> {{ pageNo - 1 }} ⬅︎ </span>
     <span class=""> Page {{ pageNo }}</span>
-    <span v-if="!endPage" v-on:click="changePage" id="pageUp" class="page-no">  ➡︎ {{ pageNo +1 }}</span>
+    <span v-if="!endPage" v-on:click="changePage" id="pageUp" class="page-no noselect">  ➡︎ {{ pageNo +1 }}</span>
   </div>
 </template>
 
@@ -22,13 +29,13 @@ import {eventBus} from '../main.js';
 
 export default {
   name: "anime-list",
-  props: ['animes'],
+  props: ['animes', 'title'],
   data() {
     return {
         selectedGenre: "",
         listFiltered: this.filteredList,
         pageNo: 1,
-        noPerPage: 12,
+        noPerPage: 5,
         endPage: false,
     }
   },
@@ -101,6 +108,7 @@ select {
   background-color: #f76363;
   margin:20px;
   padding:10px;
+  border-radius: 20px;
 }
 
 .page-no:hover{
@@ -115,5 +123,15 @@ select {
 .list-item{
   width: 160px;
   margin:5px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
 }
 </style>

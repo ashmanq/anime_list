@@ -34,7 +34,8 @@ export default {
   width: 25%; */
   background-color: #f76363;
   border-radius: 5px;
-  padding:20px;
+  padding-top:20px;
+  padding: 20px 10px 0px 10px;
 }
 
 .item-container:hover {

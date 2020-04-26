@@ -1,34 +1,40 @@
 <template lang="html">
-  <div class="details">
+  <div class="">
     <h2>Anime Details</h2>
-    <h3>{{ anime.title }}</h3>
-
-    <div class="row">
-
-      <img v-bind:src="anime.image_url" alt="">
-      <section class="column">
-        <p> Airing Start: {{ formatDate }}</p>
-        <p v-if="anime.episodes"> Episodes: {{ anime.episodes }} </p>
-        <p> Type: {{ anime.type }}</p>
-        <p> Source: {{ anime.source }}</p>
-        <p v-for="(producer, index) in anime.producers" >Producer(s): {{ producer.name }}</p>
-        <!-- <p> Score: {{ anime.score }}</p> -->
-        <p><graph class="center" :score="anime.score"></graph></p>
-        <button type="button" name="button">Add to Favourites</button>
-      </section>
+    <div class="details">
+      <h3>{{ anime.title }}</h3>
+      <div class="row">
+        <div class="column">
+          <img v-bind:src="anime.image_url" alt="">
+          <p>{{ anime.synopsis }}</p>
+        </div>
+        <div class="column">
+          <p> Airing Start: {{ formatDate }}</p>
+          <p v-if="anime.episodes"> Episodes: {{ anime.episodes }} </p>
+          <p> Type: {{ anime.type }}</p>
+          <p> Source: {{ anime.source }}</p>
+          <p v-for="(producer, index) in anime.producers" >Producer(s): {{ producer.name }}</p>
+          <p><graph class="center" :score="anime.score"></graph></p>
+          <button v-on:click="addToWatchlist" type="button" name="button">Add to Watchlist</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 
-// import {eventBus} from "../main.js";
+import {eventBus} from "../main.js";
 import Graph from './Graph.vue';
 
 export default {
   name: 'detail-view',
   props: ['anime'],
-
+  methods: {
+    addToWatchlist: function() {
+      eventBus.$emit("add-to-watchlist", this.anime);
+    },
+  },
   computed: {
     formatDate: function() {
       const date = new Date(this.anime.airing_start);
@@ -49,12 +55,13 @@ export default {
 img {
   padding:16px;
   height:300px;
+  max-width: 200px;
   align-self: center;
 
 }
 .details {
   background-color: #f76363;
-  margin-top:80px;
+  margin-top:100px;
 }
 .row {
   display:flex;
@@ -63,6 +70,7 @@ img {
 .column {
   display: flex;
   flex-direction: column;
+  margin:5px;
 }
 .center {
   margin: auto;

@@ -5,11 +5,15 @@
       <section id="selection" class="selection">
         <anime-form></anime-form>
         <loading-indicator v-if="loading"></loading-indicator>
-        <anime-list v-if="animes" :animes="animes"></anime-list>
+        <anime-list v-if="animes" :animes="animes" :title="listTitles[0]"></anime-list>
       </section>
-      <section id="details" class="details">
-        <item-detail v-if="selectedAnime" :anime="selectedAnime"></item-detail>
-      </section>
+      <div v-if="animeWatchList.length>0" class="watch-list">
+        <anime-list :animes="animeWatchList" :title="listTitles[1]"></anime-list>
+      </div>
+      <div v-if="selectedAnime" id="details" class="details">
+        <item-detail  :anime="selectedAnime"></item-detail>
+      </div>
+
     </div>
   </div>
 </template>
@@ -29,6 +33,8 @@ export default {
       animes: null,
       loading: null,
       selectedAnime: null,
+      animeWatchList: [],
+      listTitles: ['Currently Airing Anime', 'Watchlist']
       // filterByGenre: null,
     }
   },
@@ -45,16 +51,28 @@ export default {
       this.animes = res.anime;
       this.loading = false;
     });
-
+    // For when an item is selcted in the main anime list
     eventBus.$on("item-selected", (selected) => {
       // var element = document.getElementById("app");
       // element.scrollIntoView();
       this.selectedAnime = selected;
     });
-
+    // For when the genre filter is changed
     eventBus.$on("filter-genre", (selectedGenre) => {
       this.filterByGenre = selectedGenre;
+    });
+    // For when an anime is to be added to the favourites list
+    eventBus.$on("add-to-watchlist", (animeToAdd) => {
+
+      // const alreadyInWatchlist = this.animeWatchList.find(anime => anime.title === animeToAdd.title)
+      const alreadyInWatchlist = this.animeWatchList.includes(animeToAdd);
+      if(!alreadyInWatchlist) {
+        this.animeWatchList.push(animeToAdd);
+      }
+
+
     })
+
   },
   components: {
     "anime-form": AnimeForm,
@@ -85,7 +103,6 @@ h1  {
 .container {
   display: flex;
   justify-content: space-between;
-
 }
 
 .selection {
@@ -103,6 +120,14 @@ h1  {
   border-radius: 5px;
   justify-content: center;
   align-items: center;
+  flex:1;
+}
+
+.watch-list {
+  background-color: #3d54ff;
+  margin:10px;
+  padding:20px;
+  border-radius: 5px;
   flex:1;
 }
 
