@@ -91,7 +91,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* color: #4b4c57; */
-  color: #f0ebeb;
+  color:#ffffff;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
@@ -102,6 +102,7 @@ h1  {
   margin:60px;
   color:#212f3d;
 }
+
 .container {
   display: flex;
   justify-content: space-between;

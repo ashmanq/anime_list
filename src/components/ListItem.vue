@@ -1,7 +1,7 @@
 <template lang="html">
   <div v-on:click="itemDetail" class="item-container">
     <img v-bind:src="anime.image_url" alt="">
-    <h4>{{ aFunction() }}</h4>
+    <h4>{{ limitTitleLength() }}</h4>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
     itemDetail: function(){
       eventBus.$emit('item-selected', this.anime);
     },
-    aFunction: function() {
+    limitTitleLength: function() {
       if (this.anime.title.length > 30) {
         return this.anime.title.substring(0, 30) + '...';
       } else {
@@ -29,13 +29,11 @@ export default {
 
 <style lang="css" scoped>
 .item-container {
-  /* display:flex;
-  flex-direction: column;
-  width: 25%; */
   background-color: #2EC4B6;
   border-radius: 5px;
   padding-top:20px;
   padding: 20px 10px 0px 10px;
+  color: #f0ebeb;
 }
 
 .item-container:hover {

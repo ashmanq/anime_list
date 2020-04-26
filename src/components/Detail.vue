@@ -61,6 +61,7 @@ img {
 }
 .details {
   background-color: #2EC4B6;
+  color: #f0ebeb;
   margin-top:100px;
 }
 .row {
