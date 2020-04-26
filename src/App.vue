@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+    <img class="logo" src="../public/animelogo.svg" alt="">
     <h1>Anime Web App</h1>
+
     <div class="container">
       <section id="selection" class="selection">
         <anime-form></anime-form>
@@ -104,11 +106,16 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  align-items: center;
 }
 h1  {
   font-size: 3em;
-  margin:40px;
+  margin-top:0px;
+  margin-bottom:30px;
   color:#212f3d;
+}
+span{
+  color:black;
 }
 
 .container {
@@ -139,11 +146,15 @@ h1  {
   border-radius: 5px;
   flex-grow:1;
 }
-
+.logo {
+  height:200px;
+  width:200px;
+  justify-content: center;
+}
 @media only screen and (max-width: 900px) {
   .container {
     flex-wrap: wrap;
-    justify-content: center;
+    text-align: center;
   }
 }
 </style>
