@@ -2,12 +2,12 @@
   <div class="">
     <h2>{{ title }}</h2>
     <label for="genre">Genre </label>
-    <select v-model="selectedGenre" v-on:change="resetPages" class="genre" name="genre" id="genre">
+    <select v-model="selectedGenre" v-on:change="resetPages" class="genre dropdown" name="genre" id="genre">
       <option value="">All</option>
       <option v-for="(genre, index) in findGenres" v-bind:value="genre">{{ genre }}</option>
     </select>
     <label for="no-per-page">No Per Page</label>
-    <select v-model.number="noPerPage" class="" name="no-per-page" id="no-per-page">
+    <select v-model.number="noPerPage" class="dropdown" name="no-per-page" id="no-per-page">
       <option value=5 selected>5</option>
       <option value=10>10</option>
       <option value=15>15</option>
@@ -105,7 +105,7 @@ select {
   margin:30px;
 }
 .page-no{
-  background-color: #f76363;
+  background-color: #2EC4B6;
   margin:20px;
   padding:10px;
   border-radius: 20px;
@@ -113,6 +113,7 @@ select {
 
 .page-no:hover{
   background-color: #b34646;
+  cursor: pointer;
 }
 .list-container {
   display: flex;
@@ -123,6 +124,10 @@ select {
 .list-item{
   width: 160px;
   margin:5px;
+}
+
+.dropdown:hover {
+  cursor: pointer;
 }
 
 .noselect {

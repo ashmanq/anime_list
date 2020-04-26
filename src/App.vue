@@ -86,17 +86,19 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #e0f0ff;
+  /* color: #4b4c57; */
+  color: #f0ebeb;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 h1  {
+  font-size: 3em;
   margin:60px;
   color:#212f3d;
 }
@@ -107,14 +109,14 @@ h1  {
 
 .selection {
   flex:2;
-  background-color: #3d54ff;
+  background-color: #FFBF69;
   margin: 10px;
   padding:20px;
   border-radius: 5px;
 }
 
 .details {
-  background-color: #3d54ff;
+  background-color: #FFBF69;
   margin:10px;
   padding:20px;
   border-radius: 5px;
@@ -124,7 +126,7 @@ h1  {
 }
 
 .watch-list {
-  background-color: #3d54ff;
+  background-color: #FFBF69;
   margin:10px;
   padding:20px;
   border-radius: 5px;

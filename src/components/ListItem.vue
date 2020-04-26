@@ -32,14 +32,16 @@ export default {
   /* display:flex;
   flex-direction: column;
   width: 25%; */
-  background-color: #f76363;
+  background-color: #2EC4B6;
   border-radius: 5px;
   padding-top:20px;
   padding: 20px 10px 0px 10px;
 }
 
 .item-container:hover {
-  background-color: #b34646;
+  background-color: #176F5E;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 img {

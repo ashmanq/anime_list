@@ -15,7 +15,7 @@
           <p> Source: {{ anime.source }}</p>
           <p v-for="(producer, index) in anime.producers" >Producer(s): {{ producer.name }}</p>
           <p><graph class="center" :score="anime.score"></graph></p>
-          <button v-on:click="addToWatchlist" type="button" name="button">Add to Watchlist</button>
+          <button v-on:click="addToWatchlist" type="button" name="button" class="btn"><b>Add to Watchlist</b></button>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@ img {
 
 }
 .details {
-  background-color: #f76363;
+  background-color: #2EC4B6;
   margin-top:100px;
 }
 .row {
@@ -76,5 +76,18 @@ img {
   margin: auto;
   width:120px;
   align-self: center;
+}
+
+.btn{
+  padding:5px;
+  border-radius: 80px;
+  font-size: 1em;
+  color: #636575;
+  background-color: #FFBF69;
+  border-style: none;
+}
+.btn:hover {
+  background-color: #FF9F1C;
+  cursor: pointer;
 }
 </style>
