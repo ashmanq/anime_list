@@ -76,10 +76,8 @@ export default {
     });
     // For removing an item from the watchlist
     eventBus.$on("delete-from-watchlist", (animeToRemove) => {
-      const indexOfItemToRemove = this.animeWatchList.index(animeToRemove);
-      console.log(indexOfItemToRemove);
-
-
+      const indexOfItemToRemove = this.animeWatchList.indexOf(animeToRemove);
+      this.animeWatchList.splice(indexOfItemToRemove, 1);
     });
 
   },
@@ -119,11 +117,11 @@ h1  {
 }
 
 .selection {
-  flex-grow:3;
   background-color: #FFBF69;
   margin: 10px;
   padding:20px;
   border-radius: 5px;
+  flex-grow:1;
 }
 
 .details {
@@ -131,8 +129,6 @@ h1  {
   margin:10px;
   padding:20px;
   border-radius: 5px;
-  justify-content: center;
-  align-items: center;
   flex-grow:1;
 }
 

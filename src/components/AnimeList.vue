@@ -9,8 +9,8 @@
       </select>
       <label for="no-per-page">No Per Page</label>
       <select v-model.number="noPerPage" class="dropdown" name="no-per-page" id="no-per-page">
-        <option value=5 selected>5</option>
-        <option value=10>10</option>
+        <option value=5>5</option>
+        <option value=10 selected>10</option>
         <option value=15>15</option>
       </select>
       <div class="list-container">
@@ -21,8 +21,9 @@
       <span class=""> Page {{ pageNo }}</span>
       <span v-if="!endPage" v-on:click="changePage" id="pageUp" class="page-no noselect">  ➡︎ {{ pageNo +1 }}</span>
     </div>
-    <div v-if="animes.length==0">
-      <p>You currently don't have anything in your watch list. Click on the Add to Watchlist button from the Anime Details page
+    <div v-if="animes.length==0" class="empty-message">
+      <p>You currently don't have anything in your watch list.</p>
+      <p>Click on the Add to Watchlist button from the Anime Details page
       to add to youy list.</p>
     </div>
   </div>
@@ -41,7 +42,7 @@ export default {
         selectedGenre: "",
         listFiltered: this.filteredList,
         pageNo: 1,
-        noPerPage: 5,
+        noPerPage: 10,
         endPage: false,
     }
   },
@@ -108,6 +109,10 @@ export default {
 select {
   margin-bottom:30px;
   margin-right: 10px;
+}
+
+.empty-message {
+  margin-top: 60px;
 }
 .page-no{
   background-color: #2EC4B6;

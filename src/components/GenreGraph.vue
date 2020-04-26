@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div v-if="data.length>0">
     <div class="chart" v-if="watchListData.length>0">
       <GChart
       :settings="{ packages: ['corechart'] }"
@@ -31,7 +31,7 @@ export default {
           color: "#ffffff",
           fontSize:25,
         },
-        width:300,
+        width:"100%",
         height:300,
         pieHole: 0.5,
         legend: 'none',
@@ -99,6 +99,8 @@ export default {
 .chart {
   padding:1px;
   margin-top: 20px;
+  width:100%;
+  justify-content: center;
   /* background-color: #2EC4B6;
   border-radius: 2px; */
 }
