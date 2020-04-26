@@ -7,13 +7,16 @@
         <loading-indicator v-if="loading"></loading-indicator>
         <anime-list v-if="animes" :animes="animes" :title="listTitles[0]"></anime-list>
       </section>
-      <div v-if="animeWatchList.length>0" class="watch-list">
-        <anime-list :animes="animeWatchList" :title="listTitles[1]"></anime-list>
+      <a id="scrollTo">
+        <section v-if="selectedAnime" id="details" class="details">
+          <item-detail  :anime="selectedAnime"></item-detail>
+        </section>
+      </a>
+      <!-- <section v-if="animeWatchList.length>0" class="watch-list"> -->
+      <section class="watch-list">
+        <anime-list :animes="animeWatchList" :title="listTitles[1]" :deletable="true"></anime-list>
         <genre-graph :data="animeWatchList"></genre-graph>
-      </div>
-      <div v-if="selectedAnime" id="details" class="details">
-        <item-detail  :anime="selectedAnime"></item-detail>
-      </div>
+      </section>
 
     </div>
   </div>
@@ -37,7 +40,6 @@ export default {
       selectedAnime: null,
       animeWatchList: [],
       listTitles: ['Currently Airing Anime', 'Watchlist']
-      // filterByGenre: null,
     }
   },
   methods: {
@@ -53,11 +55,12 @@ export default {
       this.animes = res.anime;
       this.loading = false;
     });
+
     // For when an item is selcted in the main anime list
     eventBus.$on("item-selected", (selected) => {
-      // var element = document.getElementById("app");
-      // element.scrollIntoView();
       this.selectedAnime = selected;
+      var element = document.getElementById("scrollTo");
+      setTimeout(()=>{element.scrollIntoView()}, 100);
     });
     // For when the genre filter is changed
     eventBus.$on("filter-genre", (selectedGenre) => {
@@ -65,15 +68,19 @@ export default {
     });
     // For when an anime is to be added to the favourites list
     eventBus.$on("add-to-watchlist", (animeToAdd) => {
-
       // const alreadyInWatchlist = this.animeWatchList.find(anime => anime.title === animeToAdd.title)
       const alreadyInWatchlist = this.animeWatchList.includes(animeToAdd);
       if(!alreadyInWatchlist) {
         this.animeWatchList.push(animeToAdd);
       }
+    });
+    // For removing an item from the watchlist
+    eventBus.$on("delete-from-watchlist", (animeToRemove) => {
+      const indexOfItemToRemove = this.animeWatchList.index(animeToRemove);
+      console.log(indexOfItemToRemove);
 
 
-    })
+    });
 
   },
   components: {
@@ -102,7 +109,7 @@ export default {
 }
 h1  {
   font-size: 3em;
-  margin:60px;
+  margin:40px;
   color:#212f3d;
 }
 
@@ -112,7 +119,7 @@ h1  {
 }
 
 .selection {
-  flex:2;
+  flex-grow:3;
   background-color: #FFBF69;
   margin: 10px;
   padding:20px;
@@ -126,7 +133,7 @@ h1  {
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  flex:1;
+  flex-grow:1;
 }
 
 .watch-list {
@@ -134,8 +141,13 @@ h1  {
   margin:10px;
   padding:20px;
   border-radius: 5px;
-  flex:1;
+  flex-grow:1;
 }
 
-
+@media only screen and (max-width: 900px) {
+  .container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
 </style>

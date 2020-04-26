@@ -1,24 +1,30 @@
 <template lang="html">
   <div class="">
     <h2>{{ title }}</h2>
-    <label for="genre">Genre </label>
-    <select v-model="selectedGenre" v-on:change="resetPages" class="genre dropdown" name="genre" id="genre">
-      <option value="">All</option>
-      <option v-for="(genre, index) in findGenres" v-bind:value="genre">{{ genre }}</option>
-    </select>
-    <label for="no-per-page">No Per Page</label>
-    <select v-model.number="noPerPage" class="dropdown" name="no-per-page" id="no-per-page">
-      <option value=5 selected>5</option>
-      <option value=10>10</option>
-      <option value=15>15</option>
-    </select>
-    <div class="list-container">
-      <list-item class="list-item noselect" v-for="(anime, index) in filteredList" :anime="anime" :key="index"></list-item>
+    <div v-if="animes.length>0">
+      <label for="genre">Genre</label>
+      <select v-model="selectedGenre" v-on:change="resetPages" class="genre dropdown" name="genre" id="genre">
+        <option value="">All</option>
+        <option v-for="(genre, index) in findGenres" v-bind:value="genre">{{ genre }}</option>
+      </select>
+      <label for="no-per-page">No Per Page</label>
+      <select v-model.number="noPerPage" class="dropdown" name="no-per-page" id="no-per-page">
+        <option value=5 selected>5</option>
+        <option value=10>10</option>
+        <option value=15>15</option>
+      </select>
+      <div class="list-container">
+        <list-item class="list-item noselect" v-for="(anime, index) in filteredList" :anime="anime" :key="index" :deletable="deletable"></list-item>
+      </div>
+      <p></p>
+      <span v-on:click="changePage" id="pageDown" class="page-no noselect" v-if="pageNo>1"> {{ pageNo - 1 }} ⬅︎ </span>
+      <span class=""> Page {{ pageNo }}</span>
+      <span v-if="!endPage" v-on:click="changePage" id="pageUp" class="page-no noselect">  ➡︎ {{ pageNo +1 }}</span>
     </div>
-    <p></p>
-    <span v-on:click="changePage" id="pageDown" class="page-no noselect" v-if="pageNo>1"> {{ pageNo - 1 }} ⬅︎ </span>
-    <span class=""> Page {{ pageNo }}</span>
-    <span v-if="!endPage" v-on:click="changePage" id="pageUp" class="page-no noselect">  ➡︎ {{ pageNo +1 }}</span>
+    <div v-if="animes.length==0">
+      <p>You currently don't have anything in your watch list. Click on the Add to Watchlist button from the Anime Details page
+      to add to youy list.</p>
+    </div>
   </div>
 </template>
 
@@ -29,7 +35,7 @@ import {eventBus} from '../main.js';
 
 export default {
   name: "anime-list",
-  props: ['animes', 'title'],
+  props: ['animes', 'title', 'deletable'],
   data() {
     return {
         selectedGenre: "",
@@ -41,7 +47,7 @@ export default {
   },
 
   methods: {
-    
+
   },
   computed: {
     // Function to get all genres from anime list and create
@@ -100,7 +106,8 @@ export default {
 
 <style lang="css" scoped>
 select {
-  margin:30px;
+  margin-bottom:30px;
+  margin-right: 10px;
 }
 .page-no{
   background-color: #2EC4B6;
@@ -137,4 +144,17 @@ select {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Opera and Firefox */
 }
+
+@media only screen and (max-width: 900px) {
+.list-item {
+  width: 120px;
+  margin:3px;
+}
+
+.page-no{
+  margin:10px;
+  padding:5px;
+}
+}
+
 </style>

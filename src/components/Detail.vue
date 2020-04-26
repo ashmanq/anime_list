@@ -57,7 +57,7 @@ img {
   height:300px;
   max-width: 200px;
   align-self: center;
-
+  border-radius: 30px;
 }
 .details {
   background-color: #2EC4B6;
@@ -72,6 +72,7 @@ img {
   display: flex;
   flex-direction: column;
   margin:5px;
+  max-width: 300px;
 }
 .center {
   margin: auto;
@@ -90,5 +91,24 @@ img {
 .btn:hover {
   background-color: #FF9F1C;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+  .row {
+    flex-wrap: wrap;
+  }
+  .center {
+    margin: auto;
+    width:100px;
+    align-self: center;
+  }
+
+  img {
+    padding:16px;
+    height:200px;
+    max-width: 150px;
+    align-self: center;
+
+  }
 }
 </style>

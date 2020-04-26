@@ -1,12 +1,14 @@
 <template lang="html">
   <div class="">
-    <div class="chart">
+    <div class="chart" v-if="watchListData.length>0">
       <GChart
       :settings="{ packages: ['corechart'] }"
       type="PieChart"
       :data="compInputs"
       :options="options"
       />
+      <p> This is the weighted genre mix of the anime you have included in your watch list.</p>
+      <p> Mouse over a slice to get more details.</p>
     </div>
 
   </div>
@@ -29,15 +31,11 @@ export default {
           color: "#ffffff",
           fontSize:25,
         },
-        width:400,
-        height:400,
+        width:300,
+        height:300,
         pieHole: 0.5,
         legend: 'none',
         backgroundColor: "#FFBF69",
-        slices: {  1: {offset: 0.1},
-                 2: {offset: 0.2},
-                 3: {offset: 0.2},
-       },
       },
       chartInput: [
         ['Task', 'Hours per Day'],
