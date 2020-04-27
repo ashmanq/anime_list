@@ -59,7 +59,7 @@ export default {
 
 img {
   max-height: 150px;
-  max-width: 150px;
+  max-width: 110px;
   border-radius: 10px;
 }
 .btn{
