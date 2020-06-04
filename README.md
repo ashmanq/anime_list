@@ -1,4 +1,9 @@
-# vue_app_with_requests
+# The Anime App
+
+The objective of this app was to create a multicomponent web application using the Vue.js framework. The app was also
+to load in JSON data using an API.
+
+The app uses the Jikan API to load
 
 ## Project setup
 ```
