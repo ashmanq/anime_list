@@ -51,10 +51,10 @@ export default {
   },
   mounted() {
     this.loading = true;
-    fetch("https://api.jikan.moe/v3/season")
+    fetch("https://api.jikan.moe/v4/seasons/now")
     .then(res => res.json())
     .then((res) => {
-      this.animes = res.anime;
+      this.animes = res.data;
       this.loading = false;
     });
 

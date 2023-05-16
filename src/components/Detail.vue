@@ -5,7 +5,7 @@
       <h3>{{ anime.title }}</h3>
       <div class="row">
         <div class="column">
-          <img v-bind:src="anime.image_url" alt="">
+          <img v-bind:src="anime?.images?.webp?.image_url" alt="">
           <p>{{ anime.synopsis }}</p>
         </div>
         <div class="column">

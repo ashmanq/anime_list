@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="container">
     <div v-on:click="itemDetail" class="item-container">
-      <img v-bind:src="anime.image_url" alt="">
+      <img v-bind:src="anime?.images?.webp?.image_url" alt="">
       <h4>{{ limitTitleLength() }}</h4>
         <!-- <button class="btn" v-if="deletable" v-on:click="deleteFromWatchList" type="button" name="button"><b>Remove</b></button> -->
     </div>
